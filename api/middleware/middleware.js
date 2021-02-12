@@ -21,15 +21,11 @@ async function validateProjectId(req, res, next) {
 
 function validateProject(req, res, next) {
   const { name, description } = req.body;
-  if (name === "" || description === "") {
+  if (!name || !description) {
     res.status(400).json({
       message: "Name and description are required.",
     });
-  } else if (!req.body) {
-    res.status(400).json({
-      message: "The request body is required.",
-    });
-  } else {
+  }else {
     next();
   }
 }
@@ -54,13 +50,9 @@ async function validateActionId(req, res, next) {
 
 function validateAction(req, res, next) {
   const { description, notes } = req.body;
-  if (description === "" || notes === "") {
+  if (!description|| !notes) {
     res.status(400).json({
       message: "Description and notes are required.",
-    });
-  } else if (!req.body) {
-    res.status(400).json({
-      message: "The request body is required.",
     });
   } else {
     next();
