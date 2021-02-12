@@ -25,6 +25,10 @@ function validateProject(req, res, next) {
     res.status(400).json({
       message: "Name and description are required.",
     });
+  } else if (!req.body) {
+    res.status(400).json({
+      message: "The request body is required.",
+    });
   } else {
     next();
   }
@@ -53,6 +57,10 @@ function validateAction(req, res, next) {
   if (description === "" || notes === "") {
     res.status(400).json({
       message: "Description and notes are required.",
+    });
+  } else if (!req.body) {
+    res.status(400).json({
+      message: "The request body is required.",
     });
   } else {
     next();
