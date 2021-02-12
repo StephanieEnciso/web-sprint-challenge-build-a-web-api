@@ -51,7 +51,7 @@ async function validateActionId(req, res, next) {
 function validateAction(req, res, next) {
   const { description, notes } = req.body;
   if (description === "" || notes === "") {
-    res.staus(400).json({
+    res.status(400).json({
       message: "Description and notes are required.",
     });
   } else {
