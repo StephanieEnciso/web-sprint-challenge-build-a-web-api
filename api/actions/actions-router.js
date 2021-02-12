@@ -26,7 +26,9 @@ router.get("", (req, res) => {
 router.get("/:id", validateActionId, (req, res) => {
   res.status(200).json(req.action);
 });
-
+// for the post the end point needs to be /:id being the project id 
+// it is the only way to add an action post since each action
+//coincides with a certain project.
 router.post("/:id", validateProjectId, validateAction, (req, res) => {
   const actionInfo = { ...req.body, project_id: req.params.id };
   Action.insert(actionInfo)
