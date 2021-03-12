@@ -35,4 +35,17 @@ router.post('', validateActionBody, (req, res) => {
       })
 })
 
+router.put('/:id', validateActionId, validateActionBody, (req, res) => {
+    Action.update(req.params.id, req.body)
+      .then(action => {
+          res.status(200).json(action)
+      })
+      .catch(err => {
+          res.status(500).json({
+            message: 'The action could not be updated',
+            actualError: err
+          })
+      })
+})
+
 module.exports = router

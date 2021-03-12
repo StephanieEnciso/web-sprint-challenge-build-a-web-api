@@ -35,4 +35,17 @@ router.post('', validateProjectBody, (req, res) => {
       })
 })
 
+router.put('/:id', validateProjectId, validateProjectBody, (req, res) => {
+    Project.update(req.params.id, req.body)
+      .then(project => {
+          res.status(200).json(project)
+      })
+      .catch(err => {
+          res.status(500).json({
+              message: 'The project could not be updated',
+              actualError: err
+          })
+      })
+})
+
 module.exports = router;
