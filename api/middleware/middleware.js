@@ -41,7 +41,31 @@ async function validateProjectId(req, res, next){
     }
 }
 
+function validateActionBody(req, res, next){
+    const { description, notes } = req.body
+    if(!description || !notes){
+        res.status(400).json({
+            message: 'Description and notes are required'
+        })
+    } else {
+        next()
+    }
+}
+
+function validateProjectBody(req, res, next){
+    const { name, description } = req.body
+    if(!name || !description) {
+        res.status(400).json({
+            message: 'Name and description are required'
+        })
+    } else {
+        next()
+    }
+}
+
 module.exports = {
     validateActionId,
-    validateProjectId
+    validateProjectId,
+    validateActionBody,
+    validateProjectBody
 }
